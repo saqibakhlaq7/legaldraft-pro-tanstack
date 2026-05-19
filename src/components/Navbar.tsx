@@ -5,6 +5,7 @@ import { Menu, X, Scale } from 'lucide-react'
 const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'Services', path: '/services' },
+  { label: 'AI Draft', path: '/draft' },
   { label: 'Pricing', path: '/pricing' },
   { label: 'How It Works', path: '/how-it-works' },
   { label: 'About', path: '/about' },
@@ -69,10 +70,10 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <div className="hidden lg:block">
           <Link
-            to="/request"
+            to="/draft"
             className="inline-flex items-center justify-center rounded bg-gold-500 text-navy-900 font-body font-medium text-xs uppercase tracking-wider px-5 py-2.5 transition-all duration-250 hover:bg-gold-400 hover:-translate-y-px hover:shadow-gold"
           >
-            Get Document
+            AI Draft
           </Link>
         </div>
 
