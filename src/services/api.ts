@@ -1,4 +1,5 @@
-import { createOrderFn, createRazorpayOrderFn, verifyPaymentFn, trackOrderFn } from './orders.server'
+import { createOrderFn, createRazorpayOrderFn, verifyPaymentFn, trackOrderFn, getAdminOrdersFn } from './orders'
+import { generateDraftFn } from './draft'
 
 export interface CreateOrderPayload {
   documentType: string;
@@ -39,6 +40,14 @@ export async function verifyPayment(data: any) {
 
 export async function trackOrder(id: string, email: string) {
   return trackOrderFn({ data: { id, email } })
+}
+
+export async function fetchAdminOrders() {
+  return getAdminOrdersFn()
+}
+
+export async function generateDraft(data: any) {
+  return generateDraftFn({ data })
 }
 
 export async function submitContact(data: ContactPayload) {
