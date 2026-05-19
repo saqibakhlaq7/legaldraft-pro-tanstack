@@ -287,12 +287,19 @@ export const generateDraftFn = createServerFn({ method: 'POST' })
         throw new Error(`Resend error: ${error.message}`)
       }
 
-      console.log('Email sent successfully:', emailData?.id)
+      // Validate email ID - must be a valid UUID
+      const emailId = emailData?.id
+      if (!emailId || emailId === '0' || emailId === 0) {
+        console.warn('Warning: Resend did not return a valid email ID. Email may have been sent but ID is missing.')
+        console.log('Full Resend response:', JSON.stringify(emailData))
+      }
+
+      console.log('Email sent successfully:', emailId)
 
       return {
         success: true,
         message: `Draft generated and emailed to ${data.email}`,
-        emailId: emailData?.id,
+        emailId: emailId || 'pending',
         draftPreview: draftContent.substring(0, 500) + '...',
       }
     } catch (error: any) {
