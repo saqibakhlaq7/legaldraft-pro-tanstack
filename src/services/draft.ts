@@ -4,9 +4,7 @@ import { z } from 'zod'
 import { PDFDocument, StandardFonts } from 'pdf-lib'
 
 // Initialize Resend with API key
-const resend = process.env.RESEND_API_KEY
-  ? new Resend(process.env.RESEND_API_KEY)
-  : null
+const resend = new Resend('re_DMApmKv8_ER8YfgrXRkEKepoYgUDGts8u')
 
 // OpenRouter API configuration (OpenAI-compatible)
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions'
@@ -245,10 +243,6 @@ export const generateDraftFn = createServerFn({ method: 'POST' })
       const pdfBytes = await createPDF(draftContent, data.documentType)
       
       // Step 3: Send email via Resend
-      if (!resend) {
-        throw new Error('Resend API key is not configured')
-      }
-
       console.log('Sending email to:', data.email)
       
       // Convert to base64 for attachment
